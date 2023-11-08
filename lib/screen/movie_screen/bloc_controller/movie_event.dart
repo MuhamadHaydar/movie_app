@@ -1,4 +1,5 @@
 part of 'movie_bloc.dart';
 
-@immutable
-abstract class MovieEvent {}
+abstract class MovieEvent extends Equatable {
+  const MovieEvent();
+}
