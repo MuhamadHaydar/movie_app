@@ -20,7 +20,7 @@ class SplashScreen extends StatelessWidget {
             height: UiConstants.minDividerSpace,
           ),
           Text(
-            'Movie',
+            UiConstants.appName,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 20),
           )
