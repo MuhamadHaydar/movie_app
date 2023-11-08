@@ -11,7 +11,7 @@ class MovieRepository {
         Uri.parse(
             "${AppUrls.baseMovieUrl}/movie/popular?language=en-US&page=1"),
         headers: {
-          'Content-type': 'application/json',
+          'accept': 'application/json',
           'Authorization': 'Bearer ${AppUrls.accessAPiKey}'
         });
     if (response.statusCode == 200) {
@@ -21,7 +21,7 @@ class MovieRepository {
         ),
       );
     } else {
-      throw Exception(response.reasonPhrase);
+      throw Exception(response.body.toString());
     }
   }
 }
