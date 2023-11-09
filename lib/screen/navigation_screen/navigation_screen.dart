@@ -32,11 +32,12 @@ class NavigationScreen extends StatelessWidget {
         backgroundColor: ColorConstants.darkPurpleColor,
         actions: [
           IconButton(
-              onPressed: () {},
-              icon: Icon(
-                Icons.settings,
-                color: Colors.white,
-              ))
+            onPressed: () {},
+            icon: Icon(
+              Icons.settings,
+              color: Colors.white,
+            ),
+          )
         ],
       ),
       body: SafeArea(

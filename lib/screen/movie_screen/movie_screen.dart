@@ -14,8 +14,9 @@ class MovieScreen extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return BlocProvider(
-      create: (context) =>
-          MovieBloc(RepositoryProvider.of(context))..add(LoadPopularMovies()),
+      create: (context) => MovieBloc(
+        RepositoryProvider.of(context),
+      )..add(LoadPopularMovies()),
       child: SafeArea(
         child: SizedBox(
           height: height,

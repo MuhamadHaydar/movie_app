@@ -3,14 +3,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movie_app/constants/ui_constants.dart';
 import 'package:movie_app/repository/movie_repository.dart';
-import 'package:movie_app/screen/navigation_screen/navigation_screen.dart';
+import 'package:movie_app/screen/splash_screen/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale newLocal) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state?.setLocale(newLocal);
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = _locale;
+    });
+  }
 
   // This widget is the root of your application.
   @override
@@ -25,11 +43,14 @@ class MyApp extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: Locale('ar'),
-      home: RepositoryProvider(
-        create: (context) => MovieRepository(),
-        child: NavigationScreen(),
-      ),
+      locale: _locale,
+      builder: (context, child) {
+        return RepositoryProvider(
+          create: (context) => MovieRepository(),
+          child: child!,
+        );
+      },
+      home: SplashScreen(),
     );
   }
 }

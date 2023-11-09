@@ -13,10 +13,13 @@ class AboutScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Icon(
-            Icons.remove_red_eye,
-            size: 60,
-            color: ColorConstants.darkPurpleColor,
+          GestureDetector(
+            onTap: () {},
+            child: Icon(
+              Icons.remove_red_eye,
+              size: 60,
+              color: ColorConstants.darkPurpleColor,
+            ),
           ),
           SizedBox(
             height: 10,
