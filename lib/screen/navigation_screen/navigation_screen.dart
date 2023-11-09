@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movie_app/screen/about_screen/about_screen.dart';
 import 'package:movie_app/screen/favorite_screen/favorite_screen.dart';
 import 'package:movie_app/screen/movie_screen/movie_screen.dart';
+import 'package:movie_app/screen/settings_screen/settings_screen.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../constants/color_constants.dart';
@@ -32,7 +33,15 @@ class NavigationScreen extends StatelessWidget {
         backgroundColor: ColorConstants.darkPurpleColor,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              PersistentNavBarNavigator.pushNewScreen(
+                context,
+                screen: SettingsScreen(),
+                withNavBar: false,
+                // OPTIONAL VALUE. True by default.
+                pageTransitionAnimation: PageTransitionAnimation.cupertino,
+              );
+            },
             icon: Icon(
               Icons.settings,
               color: Colors.white,
