@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/service/app_urls.dart';
 
-import 'bloc_controller/movie_bloc.dart';
+import 'movie_bloc/movie_bloc.dart';
 
 class MovieScreen extends StatelessWidget {
   const MovieScreen({super.key});
