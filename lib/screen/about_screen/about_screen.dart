@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movie_app/constants/color_constants.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class AboutScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            'Eye Movie Application',
+            AppLocalizations.of(context)!.eye_movie_app,
             textAlign: TextAlign.center,
             style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
@@ -29,7 +30,7 @@ class AboutScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            'Movie application that provides popular movies and let your set your favorite movies',
+            AppLocalizations.of(context)!.app_desc,
             textAlign: TextAlign.center,
           )
         ],

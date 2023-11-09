@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_app/constants/ui_constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movie_app/screen/about_screen/about_screen.dart';
 import 'package:movie_app/screen/favorite_screen/favorite_screen.dart';
 import 'package:movie_app/screen/movie_screen/movie_screen.dart';
@@ -26,7 +26,7 @@ class NavigationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          UiConstants.appName,
+          AppLocalizations.of(context)!.app_name,
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: ColorConstants.darkPurpleColor,
@@ -49,14 +49,14 @@ class NavigationScreen extends StatelessWidget {
             PersistentBottomNavBarItem(
               contentPadding: 5,
               icon: Icon(Icons.movie),
-              title: ("job"),
+              title: ("movie"),
               activeColorPrimary: ColorConstants.lightPurple,
               inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
             PersistentBottomNavBarItem(
               contentPadding: 5,
               icon: const Icon(Icons.favorite),
-              title: ("notification"),
+              title: ("favorite"),
               activeColorPrimary: ColorConstants.lightPurple,
               inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
@@ -70,7 +70,7 @@ class NavigationScreen extends StatelessWidget {
             PersistentBottomNavBarItem(
               contentPadding: 5,
               icon: Icon(Icons.person),
-              title: ("profile"),
+              title: ("about"),
               activeColorPrimary: ColorConstants.lightPurple,
               inactiveColorPrimary: CupertinoColors.systemGrey,
             ),
