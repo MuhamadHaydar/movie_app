@@ -16,6 +16,7 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 
   static void setLocale(BuildContext context, Locale newLocal) {
+    print('update locall called' + newLocal.languageCode.toString());
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(newLocal);
   }
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
 
   setLocale(Locale locale) {
     setState(() {
-      _locale = _locale;
+      _locale = locale;
     });
   }
 

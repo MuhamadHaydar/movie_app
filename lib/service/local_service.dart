@@ -9,7 +9,7 @@ class LocalService {
   static const String KURDI = 'fa';
   static const String ARABIC = 'ar';
 
-  Future<Locale> setLocale(String languageCode) async {
+  static Future<Locale> setLocale(String languageCode) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     await _prefs.setString(LAGUAGE_CODE, languageCode);
     return _locale(languageCode);

@@ -36,7 +36,7 @@ class NavigationScreen extends StatelessWidget {
             onPressed: () {
               PersistentNavBarNavigator.pushNewScreen(
                 context,
-                screen: SettingsScreen(),
+                screen: SettingsScreen.create(context),
                 withNavBar: false,
                 // OPTIONAL VALUE. True by default.
                 pageTransitionAnimation: PageTransitionAnimation.cupertino,
