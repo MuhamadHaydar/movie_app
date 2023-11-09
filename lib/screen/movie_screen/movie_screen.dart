@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/screen/movie_detail_screen/movie_detail_screen.dart';
 import 'package:movie_app/service/app_urls.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import 'movie_bloc/movie_bloc.dart';
 
@@ -25,26 +27,49 @@ class MovieScreen extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else if (state is MovieLoadedState) {
-                return Expanded(
+                return Padding(
+                  padding: const EdgeInsets.all(10.0),
                   child: GridView.builder(
                     itemCount: state.currentMovies.length,
                     gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 220,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 10,
-                        childAspectRatio: 0.7),
+                      maxCrossAxisExtent: 220,
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      childAspectRatio: 0.7,
+                    ),
                     itemBuilder: (context, index) {
-                      return Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              image: DecorationImage(
-                                  image: NetworkImage(AppUrls
-                                          .basePosterImageUrl +
+                      return GestureDetector(
+                        onTap: () {
+                          PersistentNavBarNavigator.pushNewScreen(
+                            context,
+                            screen: MovieDetailScreen(
+                              currentMovieId:
+                                  state.currentMovies[index].id.toString(),
+                              currentMoviePosterPath:
+                                  (AppUrls.basePosterImageUrl +
                                       "/" +
                                       state.currentMovies[index].posterPath),
-                                  fit: BoxFit.cover)),
-                          child:
-                              Text(state.currentMovies[index].originalTitle));
+                              currentMovieTitle:
+                                  state.currentMovies[index].title,
+                            ),
+                            withNavBar: false,
+                            // OPTIONAL VALUE. True by default.
+                            pageTransitionAnimation:
+                                PageTransitionAnimation.cupertino,
+                          );
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                image: DecorationImage(
+                                    image: NetworkImage(AppUrls
+                                            .basePosterImageUrl +
+                                        "/" +
+                                        state.currentMovies[index].posterPath),
+                                    fit: BoxFit.cover)),
+                            child:
+                                Text(state.currentMovies[index].originalTitle)),
+                      );
                     },
                   ),
                 );
