@@ -2,5 +2,7 @@
   "app_name": "Movie Eye",
   "settings": "Settings",
   "eye_movie_app": "Movie Eye Application",
-  "app_desc": "Movie application that provides popular movies and let your set your favorite movies"
+  "app_desc": "Movie application that provides popular movies and let your set your favorite movies",
+  "add_movie_favorite": "Movie added to favorite",
+  "delete_movie_favorite": "Movie removed from favorite"
 }

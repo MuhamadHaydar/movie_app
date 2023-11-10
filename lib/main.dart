@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:movie_app/bloc/database_bloc.dart';
 import 'package:movie_app/constants/ui_constants.dart';
 import 'package:movie_app/repository/movie_repository.dart';
 import 'package:movie_app/screen/splash_screen/splash_screen.dart';
+import 'package:movie_app/service/database_service.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Here we Initialize Database.
+  await DatabaseHelper().initDatabase();
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -16,7 +23,6 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 
   static void setLocale(BuildContext context, Locale newLocal) {
-    print('update locall called' + newLocal.languageCode.toString());
     _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
     state?.setLocale(newLocal);
   }
@@ -48,7 +54,10 @@ class _MyAppState extends State<MyApp> {
       builder: (context, child) {
         return RepositoryProvider(
           create: (context) => MovieRepository(),
-          child: child!,
+          child: BlocProvider(
+            create: (context) => DatabaseBloc(),
+            child: child!,
+          ),
         );
       },
       home: SplashScreen(),

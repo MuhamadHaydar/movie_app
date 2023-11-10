@@ -20,13 +20,13 @@ class SplashScreen extends StatelessWidget {
               // Here we show loading snack bar
             } else if (state is SplashLoaded) {
               MyApp.setLocale(context, state.userLoadedLocal);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Splash Data Loaded'),
-                ),
-              );
+              // ScaffoldMessenger.of(context).showSnackBar(
+              //   SnackBar(
+              //     content: Text('Splash Data Loaded'),
+              //   ),
+              // );
 
-              Navigator.of(context).push(
+              Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => NavigationScreen()),
               );
             }
