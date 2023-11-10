@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movie_app/constants/color_constants.dart';
 import 'package:movie_app/screen/movie_detail_screen/movie_detail_bloc/movie_detail_bloc.dart';
 import 'package:movie_app/service/database_service.dart';
+import 'package:movie_app/util/util.dart';
 
 import '../../bloc/database_bloc.dart';
 
@@ -29,7 +30,9 @@ class MovieDetailScreen extends StatefulWidget {
       required String loadedMovieId,
       required String loadedMovieTitle}) {
     return BlocProvider(
-      create: (context) => MovieDetailBloc(),
+      create: (context) => MovieDetailBloc(
+        RepositoryProvider.of(context),
+      ),
       child: MovieDetailScreen(
         currentMoviePosterPath: loadedMoviePosterPath,
         currentMovieId: loadedMovieId,
@@ -133,24 +136,34 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                height: 200,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: NetworkImage(widget.currentMoviePosterPath),
-                      fit: BoxFit.cover,
-                    )),
-                child: Center(
-                  child: IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.play_circle,
-                      size: 80,
-                      color: Colors.white,
+              BlocBuilder<MovieDetailBloc, MovieDetailState>(
+                builder: (context, state) {
+                  return Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          image: NetworkImage(widget.currentMoviePosterPath),
+                          fit: BoxFit.cover,
+                        )),
+                    child: Center(
+                      child: IconButton(
+                        onPressed: () {
+                          if (state is MovieDetailLoaded) {
+                            Util.launchCurrentUrl(
+                                currentUrl: "https://www.youtube.com/watch?v=" +
+                                    state.currentMovieVideo.key);
+                          }
+                        },
+                        icon: Icon(
+                          Icons.play_circle,
+                          size: 80,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
               SizedBox(
                 height: 15,

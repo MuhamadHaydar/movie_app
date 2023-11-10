@@ -24,11 +24,15 @@ class MovieDetailLoading extends MovieDetailState {
 class MovieDetailLoaded extends MovieDetailState {
   // Load Movie Detail
   final bool isMovieAvailable;
+  final MovieVideoDetail currentMovieVideo;
 
-  MovieDetailLoaded({required this.isMovieAvailable});
+  MovieDetailLoaded({
+    required this.isMovieAvailable,
+    required this.currentMovieVideo,
+  });
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [isMovieAvailable, currentMovieVideo];
 }
 
 class MovieDetailError extends MovieDetailState {
