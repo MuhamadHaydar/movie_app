@@ -5,9 +5,15 @@ abstract class MovieDetailEvent extends Equatable {
 }
 
 class LoadMovieDetail extends MovieDetailEvent {
-  String movieId;
+  final String movieId;
+  final bool isLoadingMovieAvailability;
+  final bool isLoadingMovieDetail;
 
-  LoadMovieDetail({required this.movieId});
+  LoadMovieDetail({
+    required this.movieId,
+    required this.isLoadingMovieAvailability,
+    required this.isLoadingMovieDetail,
+  });
 
   @override
   List<Object> get props => [];

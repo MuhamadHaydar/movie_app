@@ -9,27 +9,21 @@ part 'database_state.dart';
 class DatabaseBloc extends Bloc<DatabaseEvent, DatabaseState> {
   DatabaseBloc() : super(DatabaseInitial()) {
     on<AddMovieToDatabase>((event, emit) async {
+      emit(DatabaseUpdating());
       await DatabaseHelper()
           .addItemToDatabase(event.currentMovie.id, event.currentMovie.path);
       emit(MovieAddedToDatabase());
+      emit(DatabaseUpdated());
     });
 
-    on<CheckMovieAvailability>((event, emit) async {
-      bool isMovieAvailable =
-          await DatabaseHelper().checkItemAvailability(event.movieId);
-
-      if (isMovieAvailable) {
-        emit(MovieAvailableFromDatabase());
-      } else {
-        emit(MovieNotAvailableFromDatabase());
-      }
-    });
 
     on<DeleteMovieFromDatabase>((event, emit) async {
+      emit(DatabaseUpdating());
       await DatabaseHelper().deleteItemById(
         event.movieId,
       );
       emit(MovieRemovedFromDatabase());
+      emit(DatabaseUpdated());
     });
   }
 }

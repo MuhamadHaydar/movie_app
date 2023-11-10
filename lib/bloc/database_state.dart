@@ -9,22 +9,22 @@ class DatabaseInitial extends DatabaseState {
   List<Object> get props => [];
 }
 
+class DatabaseUpdating extends DatabaseState {
+  @override
+  List<Object> get props => [];
+}
+
 class MovieAddedToDatabase extends DatabaseState {
   @override
   List<Object> get props => [];
 }
 
-class MovieAvailableFromDatabase extends DatabaseState {
-  @override
-  List<Object> get props => [];
-}
-
-class MovieNotAvailableFromDatabase extends DatabaseState {
-  @override
-  List<Object> get props => [];
-}
-
 class MovieRemovedFromDatabase extends DatabaseState {
+  @override
+  List<Object> get props => [];
+}
+
+class DatabaseUpdated extends DatabaseState {
   @override
   List<Object> get props => [];
 }

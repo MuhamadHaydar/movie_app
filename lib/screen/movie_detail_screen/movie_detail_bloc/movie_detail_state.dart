@@ -9,7 +9,24 @@ class MovieDetailInitial extends MovieDetailState {
   List<Object> get props => [];
 }
 
+class MovieDetailLoading extends MovieDetailState {
+  final bool isLoadingMovieDetail;
+  final bool isLoadingMovieAvailability;
+
+  MovieDetailLoading(
+      {required this.isLoadingMovieDetail,
+      required this.isLoadingMovieAvailability});
+
+  @override
+  List<Object> get props => [];
+}
+
 class MovieDetailLoaded extends MovieDetailState {
+  // Load Movie Detail
+  final bool isMovieAvailable;
+
+  MovieDetailLoaded({required this.isMovieAvailable});
+
   @override
   List<Object> get props => [];
 }

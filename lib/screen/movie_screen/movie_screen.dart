@@ -43,14 +43,15 @@ class MovieScreen extends StatelessWidget {
                         onTap: () {
                           PersistentNavBarNavigator.pushNewScreen(
                             context,
-                            screen: MovieDetailScreen(
-                              currentMovieId:
+                            screen: MovieDetailScreen.create(
+                              context: context,
+                              loadedMovieId:
                                   state.currentMovies[index].id.toString(),
-                              currentMoviePosterPath:
+                              loadedMoviePosterPath:
                                   (AppUrls.basePosterImageUrl +
                                       "/" +
                                       state.currentMovies[index].posterPath),
-                              currentMovieTitle:
+                              loadedMovieTitle:
                                   state.currentMovies[index].title,
                             ),
                             withNavBar: false,

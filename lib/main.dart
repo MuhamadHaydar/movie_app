@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:movie_app/bloc/database_bloc.dart';
 import 'package:movie_app/constants/ui_constants.dart';
 import 'package:movie_app/repository/movie_repository.dart';
+import 'package:movie_app/screen/favorite_screen/favorite_bloc/favorite_bloc.dart';
 import 'package:movie_app/screen/splash_screen/splash_screen.dart';
 import 'package:movie_app/service/database_service.dart';
 
@@ -52,10 +53,19 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: AppLocalizations.supportedLocales,
       locale: _locale,
       builder: (context, child) {
-        return RepositoryProvider(
-          create: (context) => MovieRepository(),
-          child: BlocProvider(
-            create: (context) => DatabaseBloc(),
+        return MultiRepositoryProvider(
+          providers: [
+            RepositoryProvider(create: (context) => MovieRepository()),
+          ],
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => DatabaseBloc(),
+              ),
+              BlocProvider(
+                create: (context) => FavoriteBloc(),
+              )
+            ],
             child: child!,
           ),
         );

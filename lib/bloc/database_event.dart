@@ -5,28 +5,29 @@ abstract class DatabaseEvent extends Equatable {
 }
 
 class AddMovieToDatabase extends DatabaseEvent {
-  MovieLocalData currentMovie;
+  final MovieLocalData currentMovie;
 
   AddMovieToDatabase({required this.currentMovie});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [currentMovie];
 }
 
 class CheckMovieAvailability extends DatabaseEvent {
-  String movieId;
+  final String movieId;
 
   CheckMovieAvailability({required this.movieId});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [movieId];
 }
 
 class DeleteMovieFromDatabase extends DatabaseEvent {
-  String movieId;
+  final String movieId;
 
   DeleteMovieFromDatabase({required this.movieId});
 
   @override
-  List<Object> get props => [];
+  List<Object> get props => [movieId];
 }
+
